@@ -1,7 +1,10 @@
 #include "HeapSort.h"
 #include <vector>
+using namespace std;
 
-void HeapSort::heap_sort(vector<int> arr, int n){
+int heap_size = 0;
+
+void heap_sort(vector<int>& arr, int n){
   build_max_heap(arr, n);
   for( int i  = n - 1; i > 0; i--){
     swap(arr, 0, i);
@@ -11,7 +14,7 @@ void HeapSort::heap_sort(vector<int> arr, int n){
 }
 
 //builds max heap
-void HeapSort::build_max_heap(vector<int> arr, int n){
+void build_max_heap(vector<int>& arr, int n){
   heap_size = n;
   for(int i = (n / 2) - 1; i >= 0; i--){
     max_heapify(arr, i);
@@ -19,7 +22,7 @@ void HeapSort::build_max_heap(vector<int> arr, int n){
 }
 
 //start with top element, if one of the children is larger swap down, if swap is done use recursion on that element
-void HeapSort::max_heapify(vector<int> arr, int i){
+void max_heapify(vector<int>& arr, int i){
   int largest = i;
 
   //if in bounds and left-child > parent
@@ -32,14 +35,14 @@ void HeapSort::max_heapify(vector<int> arr, int i){
   }
   //if one of the children is greater swap
   if(largest != i){
-    swap(arr, arr[i], arr[largest]);
+    swap(arr, i, largest);
     max_heapify(arr, largest);
   }
 }
 
 //insert an element
-void HeapSort::insert(vector<int> arr, int val){
-  arr[heap_size] = value;
+void insert(vector<int>& arr, int val){
+  arr[heap_size] = val;
   int i = heap_size;
   ++heap_size;
 
@@ -51,20 +54,20 @@ void HeapSort::insert(vector<int> arr, int val){
 }
 
 //swaps two elements 
-void HeapSort::swap(vector<int>& arr, int i, int j){
+void swap(vector<int>& arr, int i, int j){
   int temp = arr[i];
   arr[i] = arr[j];
   arr[j] = temp;
 }
 
 //helper functions to get parent, left and right values in tree
-int HeapSort::parent(int i){
+int parent(int i){
   return i / 2;
 }
-int HeapSort::left(int i){
+int left(int i){
   return (2 * i) + 1;
 }
-int HeapSort::right(int i){
+int right(int i){
   return (2 * i) + 2;
 }
 
