@@ -1,7 +1,6 @@
 #include <vector>
 #include <iostream>
 #include "HeapSort.h"
-#include "MergeSort.h"
 using namespace std;
 
 int main(){
